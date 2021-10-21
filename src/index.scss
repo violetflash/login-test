@@ -1,0 +1,34 @@
+@import-normalize;
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+:root {
+  // typo
+  --family: "Roboto", sans-serif;
+  --fs: 14px;
+  --fw: 400;
+
+  // colors
+  --mainColor: hsl(200, 15%, 8%);
+  --bgColor: hsl(0, 0%, 98%);
+
+  // shadow
+  --shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--family);
+  font-weight: var(--fw);
+  font-size: var(--fs);
+  color: var(--mainColor);
+  background-color: var(--bgColor);
+}
