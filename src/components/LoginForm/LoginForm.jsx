@@ -1,44 +1,74 @@
+import { useRef, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setInput, clearInputs } from '../../redux';
+import { useHistory } from 'react-router-dom';
 
+import { setInput, clearInputs, login } from '../../redux';
 
-import { FormElement, InputsWrapper, Title } from "./style";
-import { Button, Input, Label } from "../ui";
+import { ButtonWrapper, Fieldset, FormElement, InputsWrapper, Title } from "./style";
+import { Button, Input, Label, Loader } from "../ui";
+import { addUserToLS } from "../../utils";
+
 
 export const LoginForm = ({ title }) => {
-  const login = 'login';
-  const password = 'password';
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
+  const history = useHistory();
+  const timer = useRef(null);
   const values = useSelector(state => state.loginForm);
 
-  const submitHandler = (e) => {
+  const loginName = 'login';
+  const passwordName = 'password';
+
+  const submitHandle = (e) => {
     e.preventDefault();
-    dispatch(clearInputs());
+    setIsLoading(true);
+    const username = values[loginName];
+
+    timer.current = setTimeout(() => {
+      dispatch(login({ username }));
+      addUserToLS(username);
+      dispatch(clearInputs());
+      history.push("/profile");
+    }, 2000);
   };
 
   const inputChangeHandle = (e) => {
-    dispatch(setInput({ name: [e.target.name], inputValue: e.target.value} ));
+    const name = e.target.name;
+    const inputValue = e.target.value;
+    dispatch(setInput({ name, inputValue }));
   };
 
+  //в лоб
   const checkAuthValid = () => {
     return values.login === "developer21" && values.password === "123456";
   };
 
+  const disabled = !checkAuthValid();
 
+  useEffect(() => {
+    return () => clearTimeout(timer.current);
+  }, []);
+
+  const loader = isLoading ? <Loader/> : null;
 
 
   return (
-    <FormElement onSubmit={submitHandler}>
+    <FormElement onSubmit={submitHandle}>
       <Title>{title}</Title>
-      <InputsWrapper>
-        <Label label={login}>
-          <Input name={login} onChange={inputChangeHandle} value={values[login]}/>
-        </Label>
-        <Label label={password} >
-          <Input name={password} onChange={inputChangeHandle} value={values[password]}/>
-        </Label>
-      </InputsWrapper>
-      <Button text="submit" type="submit" disabled={() => checkAuthValid()}/>
+      <Fieldset disabled={isLoading}>
+        <InputsWrapper>
+          <Label label={loginName}>
+            <Input name={loginName} onChange={inputChangeHandle} value={values[loginName]}/>
+          </Label>
+          <Label label={passwordName} >
+            <Input name={passwordName} onChange={inputChangeHandle} value={values[passwordName]}/>
+          </Label>
+        </InputsWrapper>
+        <ButtonWrapper>
+          {loader}
+          <Button text="submit" type="submit" disabled={disabled}/>
+        </ButtonWrapper>
+      </Fieldset>
     </FormElement>
   );
 };

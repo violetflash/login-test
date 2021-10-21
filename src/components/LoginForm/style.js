@@ -5,6 +5,7 @@ export const FormElement = styled.form`
   flex-direction: column;
   justify-content: center;
   padding: 30px 15px;
+  border-radius: var(--b-radius);
   max-width: 400px;
   background-color: var(--bgColorLight);
   box-shadow: var(--shadow);
@@ -19,5 +20,19 @@ export const Title = styled.span`
 
 export const InputsWrapper = styled.div`
   margin-bottom: 30px;
+`;
+
+export const ButtonWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+`;
+
+export const Fieldset = styled.fieldset`
+  margin: 0;
+  border: none;
+  padding: 0;
 `;
 

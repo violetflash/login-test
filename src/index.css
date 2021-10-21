@@ -12,28 +12,30 @@ html {
 }
 
 :root {
-  // typo
+  /* typo */
   --family: "Roboto", sans-serif;
   --fs-normal: 14px;
   --fs-title: 18px;
   --fw-normal: 400;
   --fw-bold: 700;
 
-  // colors
+  /* colors */
   --mainColor: hsl(200, 15%, 8%);
+  --accentColor: hsl(213, 31%, 57%);
   --grey: hsl(0, 0%, 93%);
   --white: hsl(0, 0%, 98%);
   --bgColorDark: var(--grey);
   --bgColorLight: var(--white);
-  --color: #eee;
 
-  // shadow
+  /* shadow */
   --shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
 
-  // others
+  /* others */
   --b-radius: 4px;
   --button-bgi: linear-gradient(to right, #abc4e8 0%, #c2e9fb 51%, #abc4e8 100%);
+  --button-bgi-danger: linear-gradient(to right, #da9682 0%, #ecdede 51%, #da9682 100%);
   --inputBgColor: var(--grey);
+  --inputFocusColor: var(--accentColor);
 }
 
 body {
@@ -44,7 +46,7 @@ body {
   height: 100%;
   font-family: var(--family);
   font-weight: var(--fw-normal);
-  font-size: var(--fs);
+  font-size: var(--fs-normal);
   color: var(--mainColor);
   background-color: var(--bgColorDark);
 }
