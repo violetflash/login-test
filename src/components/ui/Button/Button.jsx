@@ -1,8 +1,8 @@
 import { ButtonContainer } from "../styles";
 
 
-export const Button = ({ text, onClick = Function.prototype }) => {
+export const Button = ({ text, onClick = Function.prototype, disabled = false }) => {
   return (
-    <ButtonContainer onClick={onClick}>{text}</ButtonContainer>
+    <ButtonContainer onClick={onClick} disabled={disabled}>{text}</ButtonContainer>
   );
 };
