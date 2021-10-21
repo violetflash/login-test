@@ -10,12 +10,10 @@ export const loginFormSlice = createSlice({
   initialState,
   reducers: {
     setInput(state, action) {
-      state[action.payload['name']] = action.payload.inputValue;
+      state[action.payload.name] = action.payload.inputValue;
     },
-    clearInput(state, action) {
-      state[action.payload] = "";
-    }
+    clearInputs: () => initialState,
   }
 })
 
-export const { setInput, clearInput } = loginFormSlice.actions;
+export const { setInput, clearInputs } = loginFormSlice.actions;
