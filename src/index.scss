@@ -1,6 +1,7 @@
 @import-normalize;
 
 html {
+  height: 100%;
   box-sizing: border-box;
 }
 
@@ -13,12 +14,18 @@ html {
 :root {
   // typo
   --family: "Roboto", sans-serif;
-  --fs: 14px;
-  --fw: 400;
+  --fs-normal: 14px;
+  --fs-title: 18px;
+  --fw-normal: 400;
+  --fw-bold: 700;
 
   // colors
   --mainColor: hsl(200, 15%, 8%);
-  --bgColor: hsl(0, 0%, 98%);
+  --grey: hsl(0, 0%, 93%);
+  --white: hsl(0, 0%, 98%);
+  --bgColorDark: var(--grey);
+  --bgColorLight: var(--white);
+  --color: #eee;
 
   // shadow
   --shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
@@ -26,6 +33,7 @@ html {
   // others
   --b-radius: 4px;
   --button-bgi: linear-gradient(to right, #abc4e8 0%, #c2e9fb 51%, #abc4e8 100%);
+  --inputBgColor: var(--grey);
 }
 
 body {
@@ -33,9 +41,10 @@ body {
   align-items: center;
   justify-content: center;
   margin: 0;
+  height: 100%;
   font-family: var(--family);
-  font-weight: var(--fw);
+  font-weight: var(--fw-normal);
   font-size: var(--fs);
   color: var(--mainColor);
-  background-color: var(--bgColor);
+  background-color: var(--bgColorDark);
 }
