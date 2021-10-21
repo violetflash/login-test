@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 import { login, logout } from '../redux';
 import { Button } from "../components/ui";
-import { checkIsLoggedIn, deleteUserFromLS, getUserFromLS } from "../utils";
+import {checkIsLoggedIn, cleanLogin, deleteUserFromLS, getUserFromLS} from "../utils";
 
 export const Profile = () => {
   const { username } = useSelector(state => state.user);
@@ -26,9 +26,11 @@ export const Profile = () => {
     history.push("/");
   }
 
+  const user = cleanLogin(username);
+
   return (
     <>
-      <h1>Hello {username}!</h1>
+      <h1>{user} profile</h1>
       <Button danger text="logout" onClick={logoutHandler}/>
     </>
   )

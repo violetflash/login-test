@@ -1,4 +1,4 @@
-import { LS_USER_KEY } from "./constants";
+import {LS_USER_KEY} from "./constants";
 
 export const checkIsLoggedIn = () => {
   return localStorage.getItem(LS_USER_KEY);
@@ -14,4 +14,8 @@ export const deleteUserFromLS = () => {
 
 export const addUserToLS = (value) => {
   localStorage.setItem(LS_USER_KEY, JSON.stringify(value));
+}
+
+export const cleanLogin = (login) => {
+  return login.replace(/["']/g, '');
 }
